@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'model/test_model.dart';
+import 'home.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,7 +15,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(providers: [
-      ChangeNotifierProvider(create: (context)=>TestModel())
+      // Provider(create: (context)=> TestModel()),
+       ChangeNotifierProvider(create: (context)=>TestModel())
+
     ],
       child: MaterialApp(
         title: 'Flutter Demo',
@@ -51,7 +54,12 @@ class _MyHomePageState extends State<MyHomePage> {
           Text(Provider.of<TestModel>(context).count.toString()),
           TextButton(onPressed:(){
             Provider.of<TestModel>(context,listen: false).add();
-          }, child:Text('测试'))
+          }, child:Text('测试')),
+          TextButton(onPressed: (){
+            Navigator.of(context).push(MaterialPageRoute(builder: (conetxt){
+              return Home();
+            }));
+          }, child: Text('跳转'))
         ],
       ));
   }
