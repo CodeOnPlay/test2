@@ -5,6 +5,7 @@ class TestModel with ChangeNotifier{
   int get count => _count;
   void add(){
     _count++;
+    print(11111111);
     notifyListeners();
   }
 }
